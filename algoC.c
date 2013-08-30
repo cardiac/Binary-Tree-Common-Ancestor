@@ -85,9 +85,9 @@ struct Node *traverse(struct Node *node, int first, int second)
 
     if (l != NULL && r != NULL)
         return node;
-    if (r != NULL && (right = 1))
+    if (r != NULL)
         return r;
-    else if (l != NULL && (left = 1))
+    else if (l != NULL)
         return l;
     return NULL;
 }
