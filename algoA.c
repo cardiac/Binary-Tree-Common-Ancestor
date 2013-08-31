@@ -21,7 +21,7 @@
 //
 //  Created by Ryan Strug on 8/29/13.
 //
-//  A first attempt at finding a common ancestor in a binary tree when given two values.
+//  A first attempt at finding the least common ancestor in a binary tree when given two values. This was first idea that I had after immediately viewing the problem.
 //
 //
 //

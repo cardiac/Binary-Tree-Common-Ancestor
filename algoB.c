@@ -21,7 +21,7 @@
 //
 //  Created by Ryan Strug on 8/29/13.
 //
-//  A second attempt at finding a common ancestor in a binary tree given two values.
+//  This algorithm is the fastest of these algorithms for finding the least common ancestor in a small binary tree (as it searches the entire tree).
 //
 //
 //

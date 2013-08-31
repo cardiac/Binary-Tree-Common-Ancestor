@@ -21,7 +21,7 @@
 //
 //  Created by Ryan Strug on 8/29/13.
 //
-//  A subtle change from algorithm B in an attempt to increase speed. Third attempt.
+//  This algorithm is nearly identical to B, but shows speed gains over large data sets.
 //
 //
 //
