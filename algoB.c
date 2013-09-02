@@ -44,33 +44,40 @@ struct Node {
 
 struct Node *traverse(struct Node *node, int first, int second);
 
+void test_tree(struct Node *root);
 struct Node *build_tree();
+struct Node *build_tree_one();
+struct Node *build_tree_root();
+struct Node *build_tree_null();
 struct Node *create_node(int value, struct Node *left, struct Node *right);
+
+int values[12][3] = {{6, 4, 5}, {7, 4, 2}, {7, 5, 5}, {1, 0, 1}, {2, 8, 3},
+    {5, 1, 3}, {3, 7, 3}, {3, 5, 3}, {3, 0, 3}, {5, 2, 5}, {5, 2, 5}, {5, 0, 3}};
 
 int main()
 {
     printf("Algorithm B\n");
     
-    struct Node *root = build_tree();
-    
-    printf("6, 4: %u, expects: 5\n", traverse(root, 6, 4)->value);
-    printf("7, 4: %u, expects: 2\n", traverse(root, 7, 4)->value);
-    printf("7, 5: %u, expects: 5\n", traverse(root, 7, 5)->value);
-    printf("1, 0: %u, expects: 1\n", traverse(root, 1, 0)->value);
-    printf("2, 8: %u, expects: 3\n", traverse(root, 2, 8)->value);
+    test_tree(build_tree());
+    test_tree(build_tree_one());
+    test_tree(build_tree_root());
+    test_tree(build_tree_null());
     
     return 0;
 }
 
 struct Node *traverse(struct Node *node, int first, int second)
 {
+    if (node == NULL)
+        return NULL;
+    
     struct Node *l = node->left, *r = node->right;
     if (l != NULL && l->value != first && l->value != second)
         l = traverse(l, first, second);
     if (r != NULL && r->value != first && r->value != second)
         r = traverse(r, first, second);
     
-    if (l != NULL && r != NULL)
+    if ((l != NULL && r != NULL) || ((node->value == first || node->value == second) && (r == NULL || l == NULL)))
         return node;
     else if (r != NULL)
         return r;
@@ -79,8 +86,24 @@ struct Node *traverse(struct Node *node, int first, int second)
     return NULL;
 }
 
+void test_tree(struct Node *root)
+{
+    for (int i = 0; i < 12; i++) {
+        struct Node *node = traverse(root, values[i][0], values[i][1]);
+        printf("%u, %u => %u == ", values[i][0], values[i][1], values[i][2]);
+        if (node != NULL) {
+            printf("%u", node->value);
+            if (node->value != values[i][2])
+                printf(" DOES NOT MATCH!");
+        } else
+            printf("NULL");
+        printf("\n");
+    }
+}
+
 struct Node *build_tree()
 {
+    printf("Full tree.\n");
     struct Node *threeOne = create_node(7, NULL, NULL);
     struct Node *threeTwo = create_node(4, NULL, NULL);
     struct Node *twoOne = create_node(6, NULL, NULL);
@@ -90,6 +113,27 @@ struct Node *build_tree()
     struct Node *oneOne = create_node(5, twoOne, twoTwo);
     struct Node *oneTwo = create_node(1, twoThree, twoFour);
     return create_node(3, oneOne, oneTwo);
+}
+
+struct Node *build_tree_one()
+{
+    printf("Two level tree.\n");
+    printf("If a value returns null, the results may differ from expectations.\n");
+    struct Node *oneOne = create_node(5, NULL, NULL);
+    struct Node *oneTwo = create_node(1, NULL, NULL);
+    return create_node(3, oneOne, oneTwo);
+}
+
+struct Node *build_tree_root()
+{
+    printf("Root only tree.\n");
+    return create_node(3, NULL, NULL);
+}
+
+struct Node *build_tree_null()
+{
+    printf("Null tree.\n");
+    return NULL;
 }
 
 struct Node *create_node(int value, struct Node *left, struct Node *right)
