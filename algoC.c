@@ -42,7 +42,7 @@ struct Node {
     struct Node *left, *right;
 };
 
-struct Node *traverse(struct Node *node, int first, int second, int height);
+struct Node *traverse(struct Node *node, int first, int second);
 
 void test_tree(struct Node *root);
 struct Node *build_tree();
@@ -54,7 +54,7 @@ struct Node *create_node(int value, struct Node *left, struct Node *right);
 int left = 0, right = 0;
 
 int values[12][3] = {{6, 4, 5}, {7, 4, 2}, {7, 5, 5}, {1, 0, 1}, {2, 8, 3},
-    {5, 1, 3}, {3, 7, 3}, {3, 5, 3}, {3, 0, 3}, {5, 2, 5}, {5, 0, 3}, {5, 2, 5}};
+    {5, 1, 3}, {3, 7, 3}, {3, 5, 3}, {3, 0, 3}, {5, 2, 5}, {5, 2, 5}, {5, 0, 3}};
 
 int main()
 {
@@ -68,47 +68,46 @@ int main()
     return 0;
 }
 
-struct Node *traverse(struct Node *node, int first, int second, int height)
+struct Node *traverse(struct Node *node, int first, int second)
 {
-    if ((right > 1 && left > 1) || node == NULL)
+    if ((right == 1 && left == 1) || node == NULL)
         return NULL;
     
     struct Node *l = node->left, *r = node->right;
     if (l != NULL) {
         if (l->value != first && l->value != second)
-            l = traverse(l, first, second, height + 1);
+            l = traverse(l, first, second);
         else
-            left = height + 1;
+            left++;
     }
     if (r != NULL) {
         if (r->value != first && r->value != second)
-            r = traverse(r, first, second, height + 1);
+            r = traverse(r, first, second);
         else
-            right = height + 1;
+            right++;
     }
     
-    if (l != NULL && r != NULL)
-        return node;
-    else if (height == 0 && (node->value == first || node->value == second) && (right > 0 ^ left > 0))
+    if ((l != NULL && r != NULL) || ((node->value == first || node->value == second) && (r == NULL || l == NULL)))
         return node;
     else if (r != NULL)
         return r;
     else if (l != NULL)
         return l;
-    else if (height == 0 && (node->value == first || node->value == second))
-        return node;
     return NULL;
 }
 
 void test_tree(struct Node *root)
 {
     for (int i = 0; i < 12; i++) {
-        struct Node *node = traverse(root, values[i][0], values[i][1], 0);
+        struct Node *node = traverse(root, values[i][0], values[i][1]);
         printf("%u, %u => %u == ", values[i][0], values[i][1], values[i][2]);
-        if (node != NULL)
-            printf("%u\n", node->value);
-        else
-            printf("NULL\n");
+        if (node != NULL) {
+            printf("%u", node->value);
+            if (node->value != values[i][2])
+                printf(" DOES NOT MATCH!");
+        } else
+            printf("NULL");
+        printf("\n");
         right = 0, left = 0;
     }
 }
