@@ -13,4 +13,4 @@ $(OBJECT_DIR)%: $(SOURCE_DIR)%.c
 	$(CC) $(CFLAGS) $< -o $@
 
 clean:
-	rm -rf bin/*
+	rm -rf $(OBJECT_DIR)*
