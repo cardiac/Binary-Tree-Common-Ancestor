@@ -13,6 +13,7 @@ The C algorithm is likely faster than B for a large data set.
 
 Compile Statements
 ==================
+gcc (GCC) 4.8.3 20140624 (Red Hat 4.8.3-1)
 
 ```
 gcc -std=c11 -Wall -Wpedantic -o algoA algoA.c
