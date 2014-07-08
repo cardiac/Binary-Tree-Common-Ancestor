@@ -1,39 +1,38 @@
-//
-//    A series of attempts at algorithms to find the first common ancestor given two nodes in a binary tree.
-//    Copyright (C) 2013  Ryan
-//
-//    This program is free software; you can redistribute it and/or modify
-//    it under the terms of the GNU General Public License as published by
-//    the Free Software Foundation; either version 2 of the License, or
-//    (at your option) any later version.
-//
-//    This program is distributed in the hope that it will be useful,
-//    but WITHOUT ANY WARRANTY; without even the implied warranty of
-//    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//    GNU General Public License for more details.
-//
-//    You should have received a copy of the GNU General Public License along
-//    with this program; if not, write to the Free Software Foundation, Inc.,
-//    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-//
-//  algoA.c
-//  
-//
-//  Created by Ryan Strug on 8/29/13.
-//
-//  A first attempt at finding the least common ancestor in a binary tree when given two values. This was first idea that I had after immediately viewing the problem.
-//
-//
-//
-//            _______3______
-//           /              \
-//       ___5__           __1__
-//      /      \         /     \
-//     6        2       0       8
-//    /  \
-//   7   4
-//
-//
+/*
+    A series of attempts at algorithms to find the first common ancestor given two nodes in a binary tree.
+    Copyright (C) 2013  Ryan
+
+    This program is free software; you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation; either version 2 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License along
+    with this program; if not, write to the Free Software Foundation, Inc.,
+    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+
+  algoA.c
+  
+
+  Created by Ryan Strug on 8/29/13.
+
+  A first attempt at finding the least common ancestor in a binary tree when given two values. This was first idea that I had after immediately viewing the problem.
+
+
+
+            _______3______
+           /              \
+       ___5__           __1__
+      /      \         /     \
+     6        2       0       8
+    /  \
+   7   4
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -116,10 +115,10 @@ struct Node *traverse(struct Wrapper *first, struct Wrapper *second)
 // finds the two values specified
 void locate_data(struct Wrapper *wrapper, int height)
 {
-    if (wrapper->node->left != NULL)
+    if (wrapper->node->left)
         parse_data(wrapper, wrapper->node->left, height);
     
-    if (wrapper->node->right != NULL)
+    if (wrapper->node->right)
         parse_data(wrapper, wrapper->node->right, height);
 }
 

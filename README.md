@@ -10,3 +10,12 @@ The A algorithm was planned out very quickly is pretty much a mess, but it got t
 The B algorithm is likely the fastest for a small binary tree.
 
 The C algorithm is likely faster than B for a large data set. 
+
+Compile Statements
+==================
+
+```
+gcc -std=c11 -Wall -Wpedantic -o algoA algoA.c
+gcc -std=c11 -Wall -Wpedantic -o algoB algoB.c
+gcc -std=c11 -Wall -Wpedantic -o algoC algoC.c
+```
