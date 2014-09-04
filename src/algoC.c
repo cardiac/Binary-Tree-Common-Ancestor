@@ -1,6 +1,6 @@
 /*
     A series of attempts at algorithms to find the first common ancestor given two nodes in a binary tree.
-    Copyright (C) 2013  Ryan
+    Copyright (C) 2013 Ryan Strug
 
     This program is free software; you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
