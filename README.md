@@ -5,7 +5,7 @@ A series of attempts at algorithms to find the first common ancestor given two n
 
 All of these algorithms work with unbalanced binary trees and contain no optimization for a balanced version.
 
-The A algorithm was planned out very quickly is pretty much a mess, but it got the job done.
+The A algorithm was planned out very quickly, immediately after viewing the problem and without any research.
 
 The B algorithm is likely the fastest for a small binary tree.
 
